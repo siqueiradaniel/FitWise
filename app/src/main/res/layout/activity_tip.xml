@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tip"
+    tools:context=".TipActivity"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/home_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="5dp">
+
+        <ImageButton
+            android:id="@+id/tipNutritionIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nutrition_icon"
+            android:background="@android:color/transparent"
+            android:contentDescription="Nutrition icon representing meal tips"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tipMusculationIcon"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            />
+
+        <ImageButton
+            android:id="@+id/tipMusculationIcon"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/exercise_icon"
+            android:background="@android:color/transparent"
+            android:contentDescription="Exercise icon representing physical workout tips"
+            app:layout_constraintStart_toEndOf="@+id/tipNutritionIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tipGreeting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tip_text_greeting"
+        android:fontFamily="@font/alata"
+        android:textAlignment="center"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toTopOf="@id/tipGeneratedText"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        />
+
+    <TextView
+        android:id="@+id/tipGeneratedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aqui vai o texto gerado..."
+        android:fontFamily="@font/alata"
+        android:textAlignment="center"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tipGreeting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tipButtonGenerate"
+        />
+
+    <Button
+        android:id="@+id/tipButtonGenerate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tip_btn_generate"
+        android:fontFamily="@font/alata"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintTop_toBottomOf="@id/tipGeneratedText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

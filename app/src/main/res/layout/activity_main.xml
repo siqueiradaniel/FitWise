@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    tools:context=".MainActivity"
+    android:background="@color/home_bg"
+    android:padding="40dp"
+    >
+
+    <TextView
+        android:id="@+id/homeAppTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textAlignment="center"
+        android:text="@string/home_text_appTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/homeInputName"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        />
+
+    <EditText
+        android:id="@+id/homeInputName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
+        android:hint="@string/home_input_name"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/homeButtonSave"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/homeAppTitle" />
+
+    <Button
+        android:id="@+id/homeButtonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_btn_save"
+        android:fontFamily="@font/alata"
+        android:textColor="@color/white"
+        android:background="@color/home_btn"
+        android:textStyle="bold"
+        android:paddingHorizontal="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/homeInputName"
+        app:layout_constraintBottom_toBottomOf="parent
+"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

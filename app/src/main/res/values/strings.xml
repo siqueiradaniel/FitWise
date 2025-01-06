@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">app2</string>
+    <string name="home_text_appTitle">Dicas de nutrição e academia</string>
+    <string name="home_input_name">Digite seu nome</string>
+    <string name="home_btn_save">Guardar</string>
+    <string name="tip_text_greeting">Olá, </string>
+    <string name="tip_btn_generate">Gerar outra frase</string>
+</resources>
