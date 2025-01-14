@@ -28,53 +28,47 @@ class TipActivity : AppCompatActivity(), View.OnClickListener {
         val username = myPreferences.getString("username")
         binding.tipGreeting.text = "${binding.tipGreeting.text} $username"
 
+        tipActivityViewModel = ViewModelProvider(this).get(TipActivityViewModel::class.java)
+
+        setListeners()
+        setObservers()
+    }
+
+    private fun setListeners() {
         binding.tipButtonGenerate.setOnClickListener(this)
         binding.tipNutritionIcon.setOnClickListener(this)
         binding.tipMusculationIcon.setOnClickListener(this)
-
-        tipActivityViewModel = ViewModelProvider(this).get(TipActivityViewModel::class.java)
-        setObserver()
-//        binding.tipNutritionIcon.drawable.setTint(ContextCompat.getColor(this, R.color.tip_stroke))
-//
-//        supportActionBar?.hide()
     }
 
-    private fun setObserver() {
+    private fun setObservers() {
         tipActivityViewModel.getTip().observe(this, Observer {
             binding.tipGeneratedText.text = it
+        })
+
+        tipActivityViewModel.getNutritionColor().observe(this, Observer {
+            binding.tipNutritionIcon.drawable.setTint(
+                ContextCompat.getColor(this, it)
+            )
+        })
+
+        tipActivityViewModel.getMusculationColor().observe(this, Observer {
+            binding.tipMusculationIcon.drawable.setTint(
+                ContextCompat.getColor(this, it)
+            )
         })
     }
 
     override fun onClick(view: View) {
-        if(view.id == R.id.tipButtonGenerate) {
-            tipActivityViewModel.newTip().observe(this, Observer {
-                binding.tipGeneratedText.text = it
-            })
-
-        } else if (view.id == R.id.tipNutritionIcon) {
-            tipActivityViewModel.clickNutrituionIcon().observe(this, Observer {
-                binding.tipGeneratedText.text = it
-            })
-//            if(!isNutritionShown) {
-//                binding.tipMusculationIcon.drawable.setTint(ContextCompat.getColor(this,
-//                    R.color.white
-//                ))
-//                binding.tipNutritionIcon.drawable.setTint(ContextCompat.getColor(this,
-//                    R.color.tip_stroke
-//                ))
-//            }
-        } else if (view.id == R.id.tipMusculationIcon) {
-            tipActivityViewModel.clickMusculationIcon().observe(this, Observer {
-                binding.tipGeneratedText.text = it
-            })
-//            if (isNutritionShown) {
-//                binding.tipMusculationIcon.drawable.setTint(ContextCompat.getColor(this,
-//                    R.color.tip_stroke
-//                ))
-//                binding.tipNutritionIcon.drawable.setTint(ContextCompat.getColor(this,
-//                    R.color.white
-//                ))
-//            }
+        when(view.id) {
+            R.id.tipButtonGenerate -> {
+                tipActivityViewModel.newTip()
+            }
+            R.id.tipNutritionIcon -> {
+                tipActivityViewModel.clickNutrituionIcon()
+            }
+            R.id.tipMusculationIcon -> {
+                tipActivityViewModel.clickMusculationIcon()
+            }
         }
     }
 }

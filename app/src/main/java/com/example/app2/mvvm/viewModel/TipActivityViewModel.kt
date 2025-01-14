@@ -1,14 +1,19 @@
 package com.example.app2.mvvm.viewModel
 
+import android.graphics.Color
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.app2.R
 import com.example.app2.mvvm.repository.RandomTip
 
 class TipActivityViewModel : ViewModel() {
+    private var randomTip: RandomTip = RandomTip()
 
     private var tip = MutableLiveData<String>()
-    private var randomTip: RandomTip = RandomTip()
+    private var nutritionIconColor = MutableLiveData<Int>()
+    private var musculationIconColor = MutableLiveData<Int>()
+
     private var isNutritionShown: Boolean
     private var nutritionTip: String
     private var musculationTip: String
@@ -18,14 +23,16 @@ class TipActivityViewModel : ViewModel() {
         nutritionTip = randomTip.randomNutritionTip()
         musculationTip = randomTip.randomWorkoutTip()
 
-        tip.value = nutritionTip
+        switchToNutritionMode()
     }
 
-    fun getTip(): LiveData<String> {
-        return tip
-    }
+    fun getTip(): LiveData<String> = tip
 
-    fun newTip(): LiveData<String> {
+    fun getNutritionColor(): LiveData<Int> = nutritionIconColor
+
+    fun getMusculationColor(): LiveData<Int> = musculationIconColor
+
+    fun newTip() {
         if(isNutritionShown) {
             tip.value = randomTip.randomNutritionTip()
             nutritionTip = tip.value!!
@@ -33,22 +40,31 @@ class TipActivityViewModel : ViewModel() {
             tip.value = randomTip.randomWorkoutTip()
             musculationTip = tip.value!!
         }
-        return tip
     }
 
-    fun clickNutrituionIcon(): LiveData<String> {
+    fun clickNutrituionIcon() {
         if(!isNutritionShown) {
-            isNutritionShown = true
-            tip.value = nutritionTip
+            switchToNutritionMode()
         }
-        return tip
     }
 
-    fun clickMusculationIcon(): LiveData<String> {
+    fun clickMusculationIcon() {
         if(isNutritionShown) {
-            isNutritionShown = false
-            tip.value = musculationTip
+            switchToMusculationMode()
         }
-        return tip
+    }
+
+    private fun switchToNutritionMode() {
+        isNutritionShown = true
+        tip.value = nutritionTip
+        nutritionIconColor.value = R.color.tip_stroke
+        musculationIconColor.value = R.color.white
+    }
+
+    private fun switchToMusculationMode() {
+        isNutritionShown = false
+        tip.value = musculationTip
+        nutritionIconColor.value = R.color.white
+        musculationIconColor.value = R.color.tip_stroke
     }
 }
