@@ -1,4 +1,4 @@
-package com.example.app2
+package com.example.app2.mvvm.repository
 
 class RandomTip {
     private val nutritionTips: MutableList<String> = mutableListOf(
