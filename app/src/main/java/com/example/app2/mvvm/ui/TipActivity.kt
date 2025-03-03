@@ -58,8 +58,8 @@ class TipActivity : AppCompatActivity(), View.OnClickListener {
         })
     }
 
-    override fun onClick(view: View) {
-        when(view.id) {
+    override fun onClick(view: View?) {
+        when(view!!.id) {
             R.id.tipButtonGenerate -> {
                 tipActivityViewModel.newTip()
             }

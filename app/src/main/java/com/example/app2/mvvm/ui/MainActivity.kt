@@ -20,8 +20,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         myPreferences = MyPreferences(this)
         binding.homeButtonSave.setOnClickListener(this)
-
-        supportActionBar?.hide()
     }
 
     override fun onClick(view: View) {
